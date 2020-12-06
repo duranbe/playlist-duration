@@ -1,6 +1,5 @@
 // ==UserScript==
 // @name         Youtube Playlist Total Duration
-// @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Add the total duration of a YouTube Playlist
 // @author       Benoit Durand
