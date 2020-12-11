@@ -1,13 +1,15 @@
 // ==UserScript==
 // @name         Youtube Playlist Total Duration
-// @version      0.1
+// @namespace    http://tampermonkey.net/
+// @version      0.2
 // @description  Add the total duration of a YouTube Playlist
 // @author       Benoit Durand
-// @match        https://www.youtube.com/playlist?*
+// @match        *://www.youtube.com/playlist?list=*
 // @grant        none
 // ==/UserScript==
 
 function addPlaylistDuration() {
+
   var el = document.getElementsByClassName("style-scope ytd-thumbnail-overlay-time-status-renderer");
   var nb_video = document.getElementById("stats").getElementsByClassName("style-scope yt-formatted-string")[0].innerHTML;
 
@@ -39,9 +41,9 @@ function addPlaylistDuration() {
 
     var final_string = "\n Total Duration : " + nb_hour + ":" + nb_min.toString().padStart(2, '0') + ":" + nb_sec.toString().padStart(2, '0') ;
 
-
-    document.getElementById("description").appendChild(document.createTextNode(final_string));
-
+console.log(final_string)
+      console.log(window.location.href);
+      document.getElementById("description").appendChild(document.createTextNode(final_string));
   } else {
 
     setTimeout(addPlaylistDuration, 50); // try again in 50 milliseconds
