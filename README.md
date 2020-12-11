@@ -1,5 +1,5 @@
-## Playlist-duration
-Userscript to add the total duration of a YouTube Playlist
+## Youtube Playlist Total Duration
+Userscript to add the total duration of a YouTube Playlist in the description
 
 ### Install using GreasyFork
 
