@@ -34,9 +34,9 @@ function addPlaylistDuration() {
     }
 
     var nb_hour = Math.trunc(s / 3600);
-    s = s - nb_hour * 3600;
+    s = s%3600;
     var nb_min = Math.trunc(s / 60);
-    s = s - nb_min * 60;
+    s = s%60;
     var nb_sec = s;
 
     var final_string = "\n Total Duration : " + nb_hour + ":" + nb_min.toString().padStart(2, '0') + ":" + nb_sec.toString().padStart(2, '0') ;
