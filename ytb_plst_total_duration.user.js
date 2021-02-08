@@ -16,7 +16,6 @@ function addPlaylistDuration() {
   if (el.length == 2*nb_video) {
 
     var s = 0;
-
     var eq_sec = [3600, 60, 1];
 
     for (var i = 0; i < el.length; i++) {
@@ -24,7 +23,6 @@ function addPlaylistDuration() {
       if (el[i].tagName == "SPAN") {
 
         var time = el[i].innerHTML.replace(/\n/gi, "").split(":");
-
         var selec = eq_sec.slice(-time.length);
 
         for (var j = 0; j < time.length; j++){
@@ -53,7 +51,6 @@ var config = {childList: true};
 
 var callback = function(mutationsList){
      mutationsList.forEach(function(mutation) {
-        console.log(mutation);
          addPlaylistDuration();
          observer.disconnect();
     });
