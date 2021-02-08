@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Youtube Playlist Total Duration
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  Add the total duration of a YouTube Playlist
 // @author       Benoit Durand
 // @match        *://www.youtube.com/playlist?list=*
@@ -13,7 +13,7 @@ function addPlaylistDuration() {
   var el = document.getElementsByClassName("style-scope ytd-thumbnail-overlay-time-status-renderer");
   var nb_video = document.getElementById("stats").getElementsByClassName("style-scope yt-formatted-string")[0].innerHTML;
 
-  if (el.length == 2 * nb_video) {
+  if (el.length == 2*nb_video) {
 
     var s = 0;
 
@@ -41,13 +41,21 @@ function addPlaylistDuration() {
 
     var final_string = "\n Total Duration : " + nb_hour + ":" + nb_min.toString().padStart(2, '0') + ":" + nb_sec.toString().padStart(2, '0') ;
 
-console.log(final_string)
-      console.log(window.location.href);
-      document.getElementById("description").appendChild(document.createTextNode(final_string));
-  } else {
-
-    setTimeout(addPlaylistDuration, 50); // try again in 50 milliseconds
-  }
+    document.getElementById("description").appendChild(document.createTextNode(final_string));
+  } 
 }
 
- addPlaylistDuration();
+
+var targetNode = document.querySelectorAll('div#overlays.style-scope.ytd-thumbnail')[0];
+var config = {childList: true};
+
+var callback = function(mutationsList){
+     mutationsList.forEach(function(mutation) {
+        console.log(mutation);
+         addPlaylistDuration();
+         observer.disconnect();
+    });
+};
+
+var observer = new MutationObserver(callback);
+observer.observe(targetNode, config);
