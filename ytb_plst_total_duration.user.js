@@ -42,7 +42,9 @@ function addPlaylistDuration() {
     var final_string = "\n Total Duration : " + nb_hour + ":" + nb_min.toString().padStart(2, '0') + ":" + nb_sec.toString().padStart(2, '0') ;
 
     document.getElementById("description").appendChild(document.createTextNode(final_string));
+
   } 
+
 }
 
 
